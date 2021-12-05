@@ -1,13 +1,10 @@
 package com.dhairyasharma.reactnativeencryption
 
-import android.util.Base64
 import com.facebook.react.bridge.*
 import com.facebook.react.module.annotations.ReactModule
-import rnencryption.bouncycastle.jce.provider.BouncyCastleProvider
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
-import java.nio.charset.StandardCharsets
 import java.security.GeneralSecurityException
 import java.security.NoSuchAlgorithmException
 import java.security.SecureRandom
@@ -18,8 +15,10 @@ import javax.crypto.*
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.PBEKeySpec
 import javax.crypto.spec.SecretKeySpec
+import rnencryption.bouncycastle.jce.provider.BouncyCastleProvider
 
 class fileEncryptionOutput(val iv: ByteArray?, val salt: ByteArray?)
+
 class textEncryptionOutput(val iv: ByteArray?, val salt: ByteArray?, val encryptedText: ByteArray?)
 
 @ReactModule(name = "RNEncryptionModule")
@@ -49,12 +48,7 @@ class RNEncryptionModule(reactContext: ReactApplicationContext) :
     }
 
     @Throws(java.lang.Exception::class)
-    fun textDecryption(
-        cipherText: String,
-        password: String?,
-        iv: String?,
-        salt: String?
-    ): String {
+    fun textDecryption(cipherText: String, password: String?, iv: String?, salt: String?): String {
         val iv = iv?.hexStringToByteArray()
         val salt = salt?.hexStringToByteArray()
         val aesKeyFromPassword = getAESKeyFromPassword(password?.toCharArray(), salt)
@@ -62,10 +56,9 @@ class RNEncryptionModule(reactContext: ReactApplicationContext) :
 
         cipher.init(Cipher.DECRYPT_MODE, aesKeyFromPassword, IvParameterSpec(iv))
 
-       val plainText = cipher.doFinal(cipherText.hexStringToByteArray())
+        val plainText = cipher.doFinal(cipherText.hexStringToByteArray())
 
         return plainText.toString(Charsets.UTF_8)
-
     }
 
     @Throws(java.lang.Exception::class)
@@ -104,7 +97,6 @@ class RNEncryptionModule(reactContext: ReactApplicationContext) :
         }
     }
 
-
     @Throws(java.lang.Exception::class)
     fun textEncryption(
         plainText: String,
@@ -120,11 +112,14 @@ class RNEncryptionModule(reactContext: ReactApplicationContext) :
         val cipherText = cipher.doFinal(plainText.toByteArray(Charsets.UTF_8))
 
         return textEncryptionOutput(iv, salt, cipherText)
-
     }
 
     @Throws(java.lang.Exception::class)
-    fun fileEncryption(inputFilePath: File?, encryptedFilePath: File?, password: String?): fileEncryptionOutput {
+    fun fileEncryption(
+        inputFilePath: File?,
+        encryptedFilePath: File?,
+        password: String?
+    ): fileEncryptionOutput {
 
         val salt = getRandomNonce(SALT_LENGTH_BYTE)
         val iv = getRandomNonce(IV_LENGTH_BYTE)
@@ -156,7 +151,6 @@ class RNEncryptionModule(reactContext: ReactApplicationContext) :
         }
         return fileEncryptionOutput(iv, salt)
     }
-
 
     @ReactMethod
     fun decryptText(
@@ -201,13 +195,8 @@ class RNEncryptionModule(reactContext: ReactApplicationContext) :
         }
     }
 
-
     @ReactMethod
-    fun encryptText(
-        plainText: String,
-        password: String,
-        promise: Promise
-    ) {
+    fun encryptText(plainText: String, password: String, promise: Promise) {
         try {
             Security.addProvider(BouncyCastleProvider())
             val sealed = textEncryption(plainText, password)

@@ -43,12 +43,11 @@ class RNEncryptionModule: NSObject {
     func decryptText(cipherText: String, password: String, iv: String, salt: String) -> [String:String?]
     {
         let salt = salt.hexadecimaltodata
-        let iv = iv
+        let iv = iv.hexadecimaltodata
         let aesKeyFromPassword = self.getAESKeyFromPassword(password: password, salt: salt!, keyByteCount: 32, rounds: 65536)
+        let decryptedText = TextEncryptionDecryption.crypt(text: cipherText , keyData: aesKeyFromPassword!, ivData: iv!, operation:"decryption")
         
-        let decryptedText = TextEncryptionDecryption.crypt(data: cipherText.hexadecimaltodata!, keyData: aesKeyFromPassword!, ivData: iv.hexadecimaltodata!, operation:kCCDecrypt)
-        
-        return ["decryptedText" : String(decoding: decryptedText, as: UTF8.self)]
+        return ["decryptedText" :String(bytes: decryptedText!, encoding: .utf8)]
     }
     
     func decryptFile(encryptedFilePath: String, decryptedFilePath: String, password: String, iv: String, salt: String) -> [String:String?]
@@ -58,8 +57,6 @@ class RNEncryptionModule: NSObject {
             let salt = salt.hexadecimaltodata
             let iv = iv.hexadecimaltodata
             let aesKeyFromPassword = self.getAESKeyFromPassword(password: password, salt: salt!, keyByteCount: 32, rounds: 65536)
-            
-            
             guard let encryptedFileStream = InputStream(fileAtPath: encryptedFilePath) else
             {
                 return ["error" : "Failed to open the encrypted file for input."]
@@ -72,6 +69,7 @@ class RNEncryptionModule: NSObject {
             decryptedFilStream.open()
             
             let sc = StreamCryptor(operation: .decrypt, algorithm: ENCRYPT_ALGO, mode: .CTR, padding: .NoPadding, key: [UInt8](aesKeyFromPassword!), iv: [UInt8](iv!))
+            
             _ = FileEncryptionDecryption.crypt(sc: sc, inputStream: encryptedFileStream, outputStream: decryptedFilStream, bufferSize: 1024)
             
             encryptedFileStream.close()
@@ -88,13 +86,12 @@ class RNEncryptionModule: NSObject {
         let salt = getRandomNonce(numBytes: SALT_LENGTH_BYTE)
         let iv = getRandomNonce(numBytes: IV_LENGTH_BYTE)
         let aesKeyFromPassword = self.getAESKeyFromPassword(password: password, salt: salt!, keyByteCount: 32, rounds: 65536)
-        
-        let encryptedText = TextEncryptionDecryption.crypt(data: plainText.data(using: .utf8)!, keyData: aesKeyFromPassword!, ivData: iv!, operation:kCCEncrypt)
+        let encryptedText = TextEncryptionDecryption.crypt(text: plainText , keyData: aesKeyFromPassword!, ivData: iv!, operation:"encryption")
         
         response = [
             "iv" : iv?.datatohexadecimal,
             "salt" : salt?.datatohexadecimal,
-            "encryptedText" : encryptedText.datatohexadecimal
+            "encryptedText" : encryptedText?.datatohexadecimal
         ]
         
         return response
@@ -109,8 +106,6 @@ class RNEncryptionModule: NSObject {
             let salt = getRandomNonce(numBytes: SALT_LENGTH_BYTE)
             let iv = getRandomNonce(numBytes: IV_LENGTH_BYTE)
             let aesKeyFromPassword = self.getAESKeyFromPassword(password: password, salt: salt!, keyByteCount: 32, rounds: 65536)
-            
-            
             guard let inputFileStream = InputStream(fileAtPath: inputFilePath) else {
                 return ["error" : "Failed to initialize the image input stream."]
             }
@@ -129,12 +124,10 @@ class RNEncryptionModule: NSObject {
             encryptedFileStream.close()
             inputFileStream.close()
             
-            
             response = [
                 "iv": iv!.datatohexadecimal,
                 "salt": salt!.datatohexadecimal,
             ]
-            
         }
         return response
     }

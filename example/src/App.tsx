@@ -3,16 +3,17 @@ import { View, Text } from "react-native";
 import RNEncryptionModule from "react-native-encryption";
 
 const App = () => {
+  const password = "password";
   useEffect(() => {
     RNEncryptionModule.encryptText(
       "The quick brown fox jumps over the lazy dog.",
-      "password"
+      password
     )
       .then((res: any) => {
         console.log(res);
         RNEncryptionModule.decryptText(
           res.encryptedText,
-          "password",
+          password,
           res.iv,
           res.salt
         )
