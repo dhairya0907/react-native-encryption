@@ -186,7 +186,7 @@ class RNEncryptionModule(reactContext: ReactApplicationContext) :
             } else {
                 val decryptedText = textDecryption(cipherText, password, iv, salt)
                 val response = WritableNativeMap()
-                response.putString("status", "Success")
+                response.putString("status", "success")
                 response.putString("decryptedText", decryptedText)
                 promise.resolve(response)
             }
@@ -237,8 +237,8 @@ class RNEncryptionModule(reactContext: ReactApplicationContext) :
             } else {
                 fileDecryption(File(encryptedFilePath), File(decryptedFilePath), password, iv, salt)
                 val response = WritableNativeMap()
-                response.putString("status", "Success")
-                response.putString("message", "File Decrypted Successfully.")
+                response.putString("status", "success")
+                response.putString("message", "File Decrypted successfully.")
 
                 promise.resolve(response)
             }
@@ -267,7 +267,7 @@ class RNEncryptionModule(reactContext: ReactApplicationContext) :
             } else {
                 val sealed = textEncryption(plainText, password)
                 val response = WritableNativeMap()
-                response.putString("status", "Success")
+                response.putString("status", "success")
                 response.putString("iv", sealed.iv?.toHex())
                 response.putString("salt", sealed.salt?.toHex())
                 response.putString("encryptedText", sealed.encryptedText?.toHex())

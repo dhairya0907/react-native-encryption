@@ -7,6 +7,7 @@ import {
   ScrollView,
   Alert,
   Pressable,
+  Image,
 } from "react-native";
 import RNEncryptionModule from "react-native-encryption";
 import { launchImageLibrary } from "react-native-image-picker";
@@ -30,6 +31,9 @@ const App = () => {
   const [fileIv, setFileIv] = React.useState("");
   const [fileSalt, setFileSalt] = React.useState("");
   const [fileDecryptMessage, setFileDecryptMessage] = React.useState("");
+  const [fileDecryptImage, setFileDecryptImage] = React.useState(
+    "https://i.ibb.co/3NGJb8z/placeholder-TEMP.gif"
+  );
 
   function encryptText() {
     RNEncryptionModule.encryptText(plainText, encryptPassword)
@@ -74,7 +78,7 @@ const App = () => {
         setFileIv(res.iv);
         setFileSalt(res.salt);
       } else {
-        Alert.alert("Error", res.error);
+        Alert.alert("Error", res);
       }
     });
   }
@@ -89,8 +93,9 @@ const App = () => {
     ).then((res: any) => {
       if (res.status == "success") {
         setFileDecryptMessage(res.message);
+        setFileDecryptImage("file:///" + decryptFilePath);
       } else {
-        Alert.alert("Error", res.error);
+        console.log(res);
       }
     });
   }
@@ -126,7 +131,7 @@ const App = () => {
       contentContainerStyle={{
         alignItems: "center",
         width: "100%",
-        height: 1900,
+        height: 2100,
       }}
     >
       <Text style={{ top: 50 }}>RNEncryption Module</Text>
@@ -288,11 +293,20 @@ const App = () => {
         editable={false}
         value={fileDecryptMessage}
       />
+      <Image
+        style={{
+          width: "90%",
+          height: 200,
+          top: 650,
+          alignSelf: "center",
+        }}
+        source={{ uri: fileDecryptImage }}
+      />
       <TouchableOpacity
         style={{
           height: 50,
           borderWidth: 2,
-          top: 620,
+          top: 700,
           width: "70%",
           justifyContent: "center",
           alignItems: "center",
