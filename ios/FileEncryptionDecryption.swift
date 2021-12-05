@@ -21,23 +21,19 @@ open class FileEncryptionDecryption: NSObject {
         {
             let bytesRead = inputStream.read(&inputBuffer, maxLength: inputBuffer.count)
             totalBytesRead += bytesRead
-            let status = sc.update(bufferIn: inputBuffer, byteCountIn: bytesRead, bufferOut: &outputBuffer, byteCapacityOut: outputBuffer.count, byteCountOut: &cryptedBytes)
-            assert(status == Status.success)
+            _ = sc.update(bufferIn: inputBuffer, byteCountIn: bytesRead, bufferOut: &outputBuffer, byteCapacityOut: outputBuffer.count, byteCountOut: &cryptedBytes)
             if(cryptedBytes > 0)
             {
                 let bytesWritten = outputStream.write(outputBuffer, maxLength: Int(cryptedBytes))
-                assert(bytesWritten == Int(cryptedBytes))
                 totalBytesWritten += bytesWritten
             }
         }
         
-        let status = sc.final(bufferOut: &outputBuffer, byteCapacityOut: outputBuffer.count, byteCountOut: &cryptedBytes)
-        assert(status == Status.success)
+        _ = sc.final(bufferOut: &outputBuffer, byteCapacityOut: outputBuffer.count, byteCountOut: &cryptedBytes)
         
         if(cryptedBytes > 0)
         {
             let bytesWritten = outputStream.write(outputBuffer, maxLength: Int(cryptedBytes))
-            assert(bytesWritten == Int(cryptedBytes))
             totalBytesWritten += bytesWritten
         }
         

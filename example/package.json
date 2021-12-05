@@ -12,7 +12,9 @@
   },
   "dependencies": {
     "react": "^17.0.2",
-    "react-native": "^0.66.3"
+    "react-native": "^0.66.3",
+    "react-native-fs": "^2.18.0",
+    "react-native-image-picker": "^4.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
