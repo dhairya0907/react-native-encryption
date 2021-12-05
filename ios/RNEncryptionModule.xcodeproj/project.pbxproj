@@ -7,6 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		13A3B008275CA204008CADA7 /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A3AFFC275CA204008CADA7 /* Random.swift */; };
+		13A3B009275CA204008CADA7 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A3AFFD275CA204008CADA7 /* Utilities.swift */; };
+		13A3B00A275CA204008CADA7 /* StreamCryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A3AFFE275CA204008CADA7 /* StreamCryptor.swift */; };
+		13A3B00B275CA204008CADA7 /* HMAC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A3AFFF275CA204008CADA7 /* HMAC.swift */; };
+		13A3B00C275CA204008CADA7 /* Digest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A3B000275CA204008CADA7 /* Digest.swift */; };
+		13A3B00D275CA204008CADA7 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A3B001275CA204008CADA7 /* Crypto.swift */; };
+		13A3B00E275CA204008CADA7 /* Cryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A3B002275CA204008CADA7 /* Cryptor.swift */; };
+		13A3B00F275CA204008CADA7 /* Updateable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A3B004275CA204008CADA7 /* Updateable.swift */; };
+		13A3B010275CA204008CADA7 /* Status.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A3B005275CA204008CADA7 /* Status.swift */; };
+		13A3B011275CA204008CADA7 /* KeyDerivation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A3B006275CA204008CADA7 /* KeyDerivation.swift */; };
+		13A3B013275CA2EC008CADA7 /* FileEncryptionDecryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A3B012275CA2EC008CADA7 /* FileEncryptionDecryption.swift */; };
+		13A3B015275CA315008CADA7 /* FormatChangeExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A3B014275CA315008CADA7 /* FormatChangeExtention.swift */; };
+		13A3B017275CA338008CADA7 /* KeyGeneration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A3B016275CA337008CADA7 /* KeyGeneration.swift */; };
+		13A3B019275CA375008CADA7 /* TextEncryptionDecryption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13A3B018275CA375008CADA7 /* TextEncryptionDecryption.swift */; };
 		FA4F9FE82512AA42002DB4D5 /* RNEncryptionModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA4F9FE72512AA42002DB4D5 /* RNEncryptionModule.swift */; };
 		FA4F9FEB2512ACC2002DB4D5 /* RNEncryptionModule.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4F9FEA2512ACC2002DB4D5 /* RNEncryptionModule.m */; };
 /* End PBXBuildFile section */
@@ -24,6 +38,22 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		13A3AFFC275CA204008CADA7 /* Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Random.swift; sourceTree = "<group>"; };
+		13A3AFFD275CA204008CADA7 /* Utilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		13A3AFFE275CA204008CADA7 /* StreamCryptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StreamCryptor.swift; sourceTree = "<group>"; };
+		13A3AFFF275CA204008CADA7 /* HMAC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HMAC.swift; sourceTree = "<group>"; };
+		13A3B000275CA204008CADA7 /* Digest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Digest.swift; sourceTree = "<group>"; };
+		13A3B001275CA204008CADA7 /* Crypto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
+		13A3B002275CA204008CADA7 /* Cryptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cryptor.swift; sourceTree = "<group>"; };
+		13A3B003275CA204008CADA7 /* IDZSwiftCommonCrypto.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDZSwiftCommonCrypto.h; sourceTree = "<group>"; };
+		13A3B004275CA204008CADA7 /* Updateable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Updateable.swift; sourceTree = "<group>"; };
+		13A3B005275CA204008CADA7 /* Status.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Status.swift; sourceTree = "<group>"; };
+		13A3B006275CA204008CADA7 /* KeyDerivation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyDerivation.swift; sourceTree = "<group>"; };
+		13A3B007275CA204008CADA7 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		13A3B012275CA2EC008CADA7 /* FileEncryptionDecryption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileEncryptionDecryption.swift; sourceTree = "<group>"; };
+		13A3B014275CA315008CADA7 /* FormatChangeExtention.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FormatChangeExtention.swift; sourceTree = "<group>"; };
+		13A3B016275CA337008CADA7 /* KeyGeneration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyGeneration.swift; sourceTree = "<group>"; };
+		13A3B018275CA375008CADA7 /* TextEncryptionDecryption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextEncryptionDecryption.swift; sourceTree = "<group>"; };
 		FA0EFF60236CC8FB00069FA8 /* libRNEncryptionModule.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libRNEncryptionModule.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA4F9FE62512AA41002DB4D5 /* RNEncryptionModule-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "RNEncryptionModule-Bridging-Header.h"; sourceTree = "<group>"; };
 		FA4F9FE72512AA42002DB4D5 /* RNEncryptionModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RNEncryptionModule.swift; sourceTree = "<group>"; };
@@ -41,12 +71,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		13A3AFFB275CA204008CADA7 /* IDZSwiftCommonCrypto */ = {
+			isa = PBXGroup;
+			children = (
+				13A3AFFC275CA204008CADA7 /* Random.swift */,
+				13A3AFFD275CA204008CADA7 /* Utilities.swift */,
+				13A3AFFE275CA204008CADA7 /* StreamCryptor.swift */,
+				13A3AFFF275CA204008CADA7 /* HMAC.swift */,
+				13A3B000275CA204008CADA7 /* Digest.swift */,
+				13A3B001275CA204008CADA7 /* Crypto.swift */,
+				13A3B002275CA204008CADA7 /* Cryptor.swift */,
+				13A3B003275CA204008CADA7 /* IDZSwiftCommonCrypto.h */,
+				13A3B004275CA204008CADA7 /* Updateable.swift */,
+				13A3B005275CA204008CADA7 /* Status.swift */,
+				13A3B006275CA204008CADA7 /* KeyDerivation.swift */,
+				13A3B007275CA204008CADA7 /* Info.plist */,
+			);
+			path = IDZSwiftCommonCrypto;
+			sourceTree = "<group>";
+		};
 		FA0EFF57236CC8FB00069FA8 = {
 			isa = PBXGroup;
 			children = (
 				FA4F9FE62512AA41002DB4D5 /* RNEncryptionModule-Bridging-Header.h */,
 				FA4F9FEA2512ACC2002DB4D5 /* RNEncryptionModule.m */,
 				FA4F9FE72512AA42002DB4D5 /* RNEncryptionModule.swift */,
+				13A3B012275CA2EC008CADA7 /* FileEncryptionDecryption.swift */,
+				13A3B014275CA315008CADA7 /* FormatChangeExtention.swift */,
+				13A3B016275CA337008CADA7 /* KeyGeneration.swift */,
+				13A3B018275CA375008CADA7 /* TextEncryptionDecryption.swift */,
+				13A3AFFB275CA204008CADA7 /* IDZSwiftCommonCrypto */,
 				FA0EFF61236CC8FB00069FA8 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -117,8 +171,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				13A3B013275CA2EC008CADA7 /* FileEncryptionDecryption.swift in Sources */,
+				13A3B00D275CA204008CADA7 /* Crypto.swift in Sources */,
 				FA4F9FE82512AA42002DB4D5 /* RNEncryptionModule.swift in Sources */,
+				13A3B015275CA315008CADA7 /* FormatChangeExtention.swift in Sources */,
+				13A3B017275CA338008CADA7 /* KeyGeneration.swift in Sources */,
 				FA4F9FEB2512ACC2002DB4D5 /* RNEncryptionModule.m in Sources */,
+				13A3B00B275CA204008CADA7 /* HMAC.swift in Sources */,
+				13A3B011275CA204008CADA7 /* KeyDerivation.swift in Sources */,
+				13A3B010275CA204008CADA7 /* Status.swift in Sources */,
+				13A3B009275CA204008CADA7 /* Utilities.swift in Sources */,
+				13A3B019275CA375008CADA7 /* TextEncryptionDecryption.swift in Sources */,
+				13A3B00C275CA204008CADA7 /* Digest.swift in Sources */,
+				13A3B00F275CA204008CADA7 /* Updateable.swift in Sources */,
+				13A3B00A275CA204008CADA7 /* StreamCryptor.swift in Sources */,
+				13A3B008275CA204008CADA7 /* Random.swift in Sources */,
+				13A3B00E275CA204008CADA7 /* Cryptor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
