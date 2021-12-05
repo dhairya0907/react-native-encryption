@@ -1,26 +1,34 @@
-import * as React from 'react'
-import { Button, NativeModules, StyleSheet, Text, View } from 'react-native'
+import { NativeModules } from 'react-native';
 
-export const addOne = (input: number) => input + 1
+export type EncryptedData = {
+  iv: string;
+  salt: string;
+  encryptedText: string;
+};
 
-export const Counter = () => {
-  const [count, setCount] = React.useState(0)
-
-  return (
-    <View style={styles.container}>
-      <Text>You pressed {count} times</Text>
-      <Button onPress={() => setCount(addOne(count))} title='Press Me' />
-    </View>
-  )
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    height: 200,
-  },
-})
+type ReactNativeEncryption = {
+  decryptText(
+    cipherText: string,
+    password: string,
+    iv: string,
+    salt: string
+  ): Promise<string>;
+  decryptFile(
+    encryptedFilePath: string,
+    decryptedFilePath: string,
+    password: string,
+    iv: string,
+    salt: string
+  ): Promise<string>;
+  encryptText(plainText: string, password: string): Promise<EncryptedData>;
+  encryptFile(
+    inputFilePath: string,
+    encryptedFilePath: string,
+    password: string
+  ): Promise<{
+    iv: string;
+    salt: string;
+  }>;
+};
 
 export default NativeModules.RNEncryptionModule
