@@ -162,10 +162,34 @@ class RNEncryptionModule(reactContext: ReactApplicationContext) :
     ) {
         try {
             Security.addProvider(BouncyCastleProvider())
-            val decryptedText = textDecryption(cipherText, password, iv, salt)
-            val response = WritableNativeMap()
-            response.putString("decryptedText", decryptedText)
-            promise.resolve(response)
+
+            if (cipherText == null || cipherText == "") {
+                val response = WritableNativeMap()
+                response.putString("status", "Fail")
+                response.putString("error", "Cipher Text is required")
+                promise.resolve(response)
+            } else if (password == null || password == "") {
+                val response = WritableNativeMap()
+                response.putString("status", "Fail")
+                response.putString("error", "Password is required")
+                promise.resolve(response)
+            } else if (iv == null || iv == "") {
+                val response = WritableNativeMap()
+                response.putString("status", "Fail")
+                response.putString("error", "IV is required")
+                promise.resolve(response)
+            } else if (salt == null || salt == "") {
+                val response = WritableNativeMap()
+                response.putString("status", "Fail")
+                response.putString("error", "Salt is required")
+                promise.resolve(response)
+            } else {
+                val decryptedText = textDecryption(cipherText, password, iv, salt)
+                val response = WritableNativeMap()
+                response.putString("status", "Success")
+                response.putString("decryptedText", decryptedText)
+                promise.resolve(response)
+            }
         } catch (e: GeneralSecurityException) {
             promise.reject(e)
         } catch (e: Exception) {
@@ -184,10 +208,40 @@ class RNEncryptionModule(reactContext: ReactApplicationContext) :
     ) {
         try {
             Security.addProvider(BouncyCastleProvider())
-            fileDecryption(File(encryptedFilePath), File(decryptedFilePath), password, iv, salt)
-            val response = WritableNativeMap()
-            response.putString("message", "File Decrypted Successfully.")
-            promise.resolve(response)
+
+            if (encryptedFilePath == null || encryptedFilePath == "") {
+                val response = WritableNativeMap()
+                response.putString("status", "Fail")
+                response.putString("error", "Encrypted File Path is required")
+                promise.resolve(response)
+            } else if (decryptedFilePath == null || decryptedFilePath == "") {
+                val response = WritableNativeMap()
+                response.putString("status", "Fail")
+                response.putString("error", "Decrypted File Path is required")
+                promise.resolve(response)
+            } else if (password == null || password == "") {
+                val response = WritableNativeMap()
+                response.putString("status", "Fail")
+                response.putString("error", "Password is required")
+                promise.resolve(response)
+            } else if (iv == null || iv == "") {
+                val response = WritableNativeMap()
+                response.putString("status", "Fail")
+                response.putString("error", "IV is required")
+                promise.resolve(response)
+            } else if (salt == null || salt == "") {
+                val response = WritableNativeMap()
+                response.putString("status", "Fail")
+                response.putString("error", "Salt is required")
+                promise.resolve(response)
+            } else {
+                fileDecryption(File(encryptedFilePath), File(decryptedFilePath), password, iv, salt)
+                val response = WritableNativeMap()
+                response.putString("status", "Success")
+                response.putString("message", "File Decrypted Successfully.")
+
+                promise.resolve(response)
+            }
         } catch (e: GeneralSecurityException) {
             promise.reject(e)
         } catch (e: Exception) {
@@ -199,12 +253,26 @@ class RNEncryptionModule(reactContext: ReactApplicationContext) :
     fun encryptText(plainText: String, password: String, promise: Promise) {
         try {
             Security.addProvider(BouncyCastleProvider())
-            val sealed = textEncryption(plainText, password)
-            val response = WritableNativeMap()
-            response.putString("iv", sealed.iv?.toHex())
-            response.putString("salt", sealed.salt?.toHex())
-            response.putString("encryptedText", sealed.encryptedText?.toHex())
-            promise.resolve(response)
+
+            if (plainText == null || plainText == "") {
+                val response = WritableNativeMap()
+                response.putString("status", "Fail")
+                response.putString("error", "Plain text is required")
+                promise.resolve(response)
+            } else if (password == null || password == "") {
+                val response = WritableNativeMap()
+                response.putString("status", "Fail")
+                response.putString("error", "Password is required")
+                promise.resolve(response)
+            } else {
+                val sealed = textEncryption(plainText, password)
+                val response = WritableNativeMap()
+                response.putString("status", "Success")
+                response.putString("iv", sealed.iv?.toHex())
+                response.putString("salt", sealed.salt?.toHex())
+                response.putString("encryptedText", sealed.encryptedText?.toHex())
+                promise.resolve(response)
+            }
         } catch (e: GeneralSecurityException) {
             promise.reject(e)
         } catch (e: Exception) {
@@ -221,11 +289,35 @@ class RNEncryptionModule(reactContext: ReactApplicationContext) :
     ) {
         try {
             Security.addProvider(BouncyCastleProvider())
-            val sealed = fileEncryption(File(inputFilePath), File(encryptedFilePath), password)
-            val response = WritableNativeMap()
-            response.putString("iv", sealed.iv?.toHex())
-            response.putString("salt", sealed.salt?.toHex())
-            promise.resolve(response)
+
+            if (inputFilePath == null || inputFilePath == "") {
+                val response = WritableNativeMap()
+                response.putString("status", "Fail")
+                response.putString("error", "Input File Path is required")
+                promise.resolve(response)
+            } else if (encryptedFilePath == null || encryptedFilePath == "") {
+                val response = WritableNativeMap()
+                response.putString("status", "Fail")
+                response.putString("error", "Encrypted File Path is required")
+                promise.resolve(response)
+            } else if (password == null || password == "") {
+                val response = WritableNativeMap()
+                response.putString("status", "Fail")
+                response.putString("error", "Password is required")
+                promise.resolve(response)
+            } else if (!File(inputFilePath).exists()) {
+                val response = WritableNativeMap()
+                response.putString("status", "Fail")
+                response.putString("error", "File for encryption not found")
+                promise.resolve(response)
+            } else {
+                val sealed = fileEncryption(File(inputFilePath), File(encryptedFilePath), password)
+                val response = WritableNativeMap()
+                response.putString("status", "success")
+                response.putString("iv", sealed.iv?.toHex())
+                response.putString("salt", sealed.salt?.toHex())
+                promise.resolve(response)
+            }
         } catch (e: GeneralSecurityException) {
             promise.reject(e)
         } catch (e: Exception) {

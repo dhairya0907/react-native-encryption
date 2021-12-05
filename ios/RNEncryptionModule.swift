@@ -164,11 +164,34 @@ class RNEncryptionModule: NSObject {
     
     @objc(decryptFile:decryptedFilePath:withPassword:iv:salt:withResolver:withRejecter:)
     func decryptFile(
-        encryptedFilePath: String, decryptedFilePath: String, password: String, iv : String, salt : String,
+        encryptedFilePath: String?, decryptedFilePath: String?, password: String?, iv : String?, salt : String?,
         resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock
     ) {
-        let response = self.decryptFile(encryptedFilePath: encryptedFilePath, decryptedFilePath: decryptedFilePath, password: password, iv: iv, salt: salt)
-        resolve(response)
+        if(encryptedFilePath == nil || encryptedFilePath == "")
+        {
+            resolve(["status" : "Fail", "error" : "Encrypted File Path is required"])
+        }
+        else if(decryptedFilePath == nil || decryptedFilePath == "")
+        {
+            resolve(["status" : "Fail", "error" : "Decrypted File Path is required"])
+        }
+        else if(password == nil || password == "")
+        {
+            resolve(["status" : "Fail", "error" : "Password is required"])
+        }
+        else if(iv == nil || iv == "")
+        {
+            resolve(["status" : "Fail", "error" : "Iv is required"])
+        }
+        else if(salt == nil || salt == "")
+        {
+            resolve(["status" : "Fail", "error" : "Salt is required"])
+        }
+        else
+        {
+            let response = self.decryptFile(encryptedFilePath: encryptedFilePath ?? "", decryptedFilePath: decryptedFilePath ?? "", password: password ?? "", iv: iv ?? "", salt: salt ?? "")
+            resolve(response)
+        }
     }
     
     
@@ -194,11 +217,26 @@ class RNEncryptionModule: NSObject {
     
     @objc(encryptFile:encryptedFilePath:withPassword:withResolver:withRejecter:)
     func encryptFile(
-        inputFilePath: String, encryptedFilePath: String, password: String,
+        inputFilePath: String?, encryptedFilePath: String?, password: String?,
         resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock
     ) {
-        let response = self.encryptFile(inputFilePath: inputFilePath, encryptedFilePath: encryptedFilePath, password: password)
-        resolve(response)
+        if(inputFilePath == nil || inputFilePath == "")
+        {
+            resolve(["status" : "Fail", "error" : "Input File Path is required"])
+        }
+        else if(encryptedFilePath == nil || encryptedFilePath == "")
+        {
+            resolve(["status" : "Fail", "error" : "Encrypted File Path is required"])
+        }
+        else if(password == nil || password == "")
+        {
+            resolve(["status" : "Fail", "error" : "Password is required"])
+        }
+        else
+        {
+            let response = self.encryptFile(inputFilePath: inputFilePath ?? "" , encryptedFilePath: encryptedFilePath ?? "" , password: password ?? "" )
+            resolve(response)
+        }
     }
     
 }
