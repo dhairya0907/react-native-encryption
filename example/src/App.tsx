@@ -5,6 +5,7 @@ import {
   TextInput,
   TouchableOpacity,
   ScrollView,
+  Alert
 } from "react-native";
 import RNEncryptionModule from "react-native-encryption";
 
@@ -20,10 +21,14 @@ const App = () => {
   function encrypt() {
     RNEncryptionModule.encryptText(plainText, encryptPassword)
       .then((res: any) => {
-        setCipherText(res.encryptedText);
-        setDecryptPassword(encryptPassword);
-        setIv(res.iv);
-        setSalt(res.salt);
+        if (res.status == "success") {
+          setCipherText(res.encryptedText);
+          setDecryptPassword(encryptPassword);
+          setIv(res.iv);
+          setSalt(res.salt);
+        } else {
+          Alert.alert("Error", res.error);
+        }
       })
       .catch((err: any) => {
         console.log(err);
@@ -33,7 +38,11 @@ const App = () => {
   function decrypt() {
     RNEncryptionModule.decryptText(cipherText, decryptPassword, iv, salt)
       .then((res: any) => {
+        if (res.status == "success") {
         setDecryptedText(res.decryptedText);
+        } else {
+          Alert.alert("Error", res.error);
+        }
       })
       .catch((err: any) => {
         console.log(err);

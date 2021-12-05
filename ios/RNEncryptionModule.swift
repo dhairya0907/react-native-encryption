@@ -47,7 +47,7 @@ class RNEncryptionModule: NSObject {
         let aesKeyFromPassword = self.getAESKeyFromPassword(password: password, salt: salt!, keyByteCount: 32, rounds: 65536)
         let decryptedText = TextEncryptionDecryption.crypt(text: cipherText , keyData: aesKeyFromPassword!, ivData: iv!, operation:"decryption")
         
-        return ["decryptedText" :String(bytes: decryptedText!, encoding: .utf8)]
+        return ["status" : "success", "decryptedText" :String(bytes: decryptedText!, encoding: .utf8)]
     }
     
     func decryptFile(encryptedFilePath: String, decryptedFilePath: String, password: String, iv: String, salt: String) -> [String:String?]
@@ -59,12 +59,12 @@ class RNEncryptionModule: NSObject {
             let aesKeyFromPassword = self.getAESKeyFromPassword(password: password, salt: salt!, keyByteCount: 32, rounds: 65536)
             guard let encryptedFileStream = InputStream(fileAtPath: encryptedFilePath) else
             {
-                return ["error" : "Failed to open the encrypted file for input."]
+                return ["status" : "Fail", "error" : "Failed to open the encrypted file for input."]
             }
             encryptedFileStream.open()
             
             guard let decryptedFilStream = OutputStream(toFileAtPath: decryptedFilePath, append:false) else {
-                return ["error" : "Failed to open the file for the decrypted output file."]
+                return ["status" : "Fail", "error" : "Failed to open the file for the decrypted output file."]
             }
             decryptedFilStream.open()
             
@@ -75,7 +75,7 @@ class RNEncryptionModule: NSObject {
             encryptedFileStream.close()
             decryptedFilStream.close()
         }
-        return ["message" : "File Decrypted Sucessfully."]
+        return ["status" : "success", "message" : "File Decrypted Sucessfully."]
     }
     
     
@@ -89,6 +89,7 @@ class RNEncryptionModule: NSObject {
         let encryptedText = TextEncryptionDecryption.crypt(text: plainText , keyData: aesKeyFromPassword!, ivData: iv!, operation:"encryption")
         
         response = [
+            "status" : "success",
             "iv" : iv?.datatohexadecimal,
             "salt" : salt?.datatohexadecimal,
             "encryptedText" : encryptedText?.datatohexadecimal
@@ -107,13 +108,13 @@ class RNEncryptionModule: NSObject {
             let iv = getRandomNonce(numBytes: IV_LENGTH_BYTE)
             let aesKeyFromPassword = self.getAESKeyFromPassword(password: password, salt: salt!, keyByteCount: 32, rounds: 65536)
             guard let inputFileStream = InputStream(fileAtPath: inputFilePath) else {
-                return ["error" : "Failed to initialize the image input stream."]
+                return ["status" : "Fail", "error" : "Failed to initialize the image input stream."]
             }
             inputFileStream.open()
             
             guard let  encryptedFileStream = OutputStream(toFileAtPath: encryptedFilePath, append:false) else
             {
-                return ["error" : "Failed to open output stream."]
+                return ["status" : "Fail", "error" : "Failed to open output stream."]
             }
             encryptedFileStream.open()
             
@@ -125,6 +126,7 @@ class RNEncryptionModule: NSObject {
             inputFileStream.close()
             
             response = [
+                "status" : "success",
                 "iv": iv!.datatohexadecimal,
                 "salt": salt!.datatohexadecimal,
             ]
@@ -134,11 +136,30 @@ class RNEncryptionModule: NSObject {
     
     @objc(decryptText:withPassword:iv:salt:withResolver:withRejecter:)
     func decryptText(
-        cipherText: String, password: String, iv : String, salt : String,
+        cipherText: String?, password: String?, iv : String?, salt : String?,
         resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock
     ) {
-        let response = self.decryptText(cipherText: cipherText ,password: password, iv: iv, salt: salt)
-        resolve(response)
+        if(cipherText == nil || cipherText == "")
+        {
+            resolve(["status" : "Fail", "error" : "Cipher Text is required"])
+        }
+        else if(password == nil || password == "")
+        {
+            resolve(["status" : "Fail", "error" : "Password is required"])
+        }
+        else if(iv == nil || iv == "")
+        {
+            resolve(["status" : "Fail", "error" : "Iv is required"])
+        }
+        else if(salt == nil || salt == "")
+        {
+            resolve(["status" : "Fail", "error" : "Salt is required"])
+        }
+        else
+        {
+            let response = self.decryptText(cipherText: cipherText ?? "" ,password: password ?? "", iv: iv ?? "", salt: salt ?? "")
+            resolve(response)
+        }
     }
     
     @objc(decryptFile:decryptedFilePath:withPassword:iv:salt:withResolver:withRejecter:)
@@ -153,11 +174,22 @@ class RNEncryptionModule: NSObject {
     
     @objc(encryptText:withPassword:withResolver:withRejecter:)
     func encryptText(
-        plainText: String, password: String,
+        plainText: String?, password: String?,
         resolve: RCTPromiseResolveBlock, reject: RCTPromiseRejectBlock
     ) {
-        let response = self.encryptText(plainText: plainText ,password: password)
-        resolve(response)
+        if(plainText == nil || plainText == "")
+        {
+            resolve(["status" : "Fail", "error" : "Plain Text is required"])
+        }
+        else if(password == nil || password == "")
+        {
+            resolve(["status" : "Fail", "error" : "Password is required"])
+        }
+        else
+        {
+            let response = self.encryptText(plainText: plainText ?? "" ,password: password ?? "")
+            resolve(response)
+        }
     }
     
     @objc(encryptFile:encryptedFilePath:withPassword:withResolver:withRejecter:)
