@@ -1,6 +1,7 @@
 # `@dhairya0907/react-native-encryption`
 
 ![Supports Android, iOS](https://img.shields.io/badge/platforms-android%20|%20ios%20-lightgrey.svg) [ ![MIT License](https://img.shields.io/npm/l/@react-native-community/netinfo.svg) ](/LICENSE) ![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg) [ ![Maintainer](https://img.shields.io/badge/maintainer-dhairya0907-blue) ](https://github.com/dhairya0907) [![Generic badge](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/dhairya0907/react-native-encryption/releases) 
+
 [![Twitter](https://img.shields.io/badge/dhairya__0907-%231DA1F2.svg?style=for-the-badge&logo=Twitter&logoColor=white) ](https://twitter.com/dhairya_0907) [ ![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white) ](https://www.linkedin.com/in/dhairyasharma0907/)
 
 ### Encryption/decryption for React Native.
