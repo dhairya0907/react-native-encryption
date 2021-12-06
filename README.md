@@ -1,8 +1,8 @@
 # `@dhairya0907/react-native-encryption`
 
-![Supports Android, iOS](https://img.shields.io/badge/platforms-android%20|%20ios%20-lightgrey.svg) ![MIT License](https://img.shields.io/npm/l/@react-native-community/netinfo.svg)
+![Supports Android, iOS](https://img.shields.io/badge/platforms-android%20|%20ios%20-lightgrey.svg) [ ![MIT License](https://img.shields.io/npm/l/@react-native-community/netinfo.svg) ](/LICENSE) ![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg) [ ![Maintainer](https://img.shields.io/badge/maintainer-dhairya0907-blue) ](https://github.com/dhairya0907) [![Generic badge](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/dhairya0907/react-native-encryption/releases)
 
-Encryption/decryption for React Native
+Encryption/decryption for React Native.
 
 # Getting started
 
@@ -43,7 +43,7 @@ cd ios && pod install && cd ..
 
 # Usage
 
-Import the library:
+## Import the library
 
 ```javascript
 import RNEncryptionModule from "@dhairya0907/react-native-encryption";
@@ -65,6 +65,9 @@ RNEncryptionModule.encryptText(
             console.log(err);
         });
 ```
+
+- **plainText** : Plain text to be encrypted.
+- **password** : Password to encrypt the plain text.
 
 ```javascript
 returns
@@ -90,7 +93,7 @@ or
 
 ```typescript
 RNEncryptionModule.decryptText(
-    cipherText,
+    encryptedText,
     password,
     iv,
     salt).then((res: any) => {
@@ -103,6 +106,10 @@ RNEncryptionModule.decryptText(
             console.log(err);
         });
 ```
+- **encryptedText** : Cipher text to be decrypted.
+- **password** : Password to decrypt the cipher text.
+- **iv** : Initialization vector from encryptText.
+- **salt** : Salt from encryptText.
 
 ```javascript
 returns
@@ -139,6 +146,9 @@ or
             console.log(err);
         });
 ```
+- **inputFilePath** : Path of the file to be encrypted.
+- **outputEncryptedFilePath** : Path of the encrypted file.
+- **password** : Password to encrypt the file.
 
 ```javascript
 returns
@@ -160,7 +170,7 @@ or
 }
 ```
 
-## Encrypt File
+## Decrypt File
 
 ```typescript
  RNEncryptionModule.decryptFile(
@@ -179,6 +189,11 @@ or
             console.log(err);
         });
 ```
+- **encryptedFilePath** : Path of the file to be decrypted.
+- **outputDecryptedFilePath** : Path of the decrypted file.
+- **password** : Password to decrypt the file.
+- **iv** : Initialization vector from encryptFile.
+- **salt** : Salt from encryptFile.
 
 ```javascript
 returns
@@ -198,3 +213,12 @@ or
   "error": "error"
 }
 ```
+
+## Author
+
+Dhairya Sharma | [@dhairya0907](https://github.com/dhairya0907)
+
+
+## License
+
+The library is released under the MIT license. For more information see [`LICENSE`](/LICENSE).
