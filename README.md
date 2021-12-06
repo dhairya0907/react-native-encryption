@@ -86,7 +86,7 @@ or
 
 // If text encryption is unsuccessful, it returns a JSON object with the following structure:
 {
-  "status": "error",
+  "status": "Fail",
   "error": "error"
 }
 ```
@@ -126,7 +126,7 @@ or
 
 // If text decryption is unsuccessful, it returns a JSON object with the following structure:
 {
-  "status": "error",
+  "status": "Fail",
   "error": "error"
 }
 ```
@@ -167,7 +167,7 @@ or
 
 // If file encryption is unsuccessful, it returns a JSON object with the following structure:
 {
-  "status": "error",
+  "status": "Fail",
   "error": "error"
 }
 ```
@@ -211,7 +211,7 @@ or
 
 // If file decryption is unsuccessful, it returns a JSON object with the following structure:
 {
-  "status": "error",
+  "status": "Fail",
   "error": "error"
 }
 ```
