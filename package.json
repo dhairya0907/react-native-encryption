@@ -1,12 +1,16 @@
 {
-  "name": "react-native-encryption",
+  "name": "@dhairya0907/react-native-encryption",
   "version": "1.0.0",
-  "description": "",
+  "description": "Encryption/Decryption for React Native",
   "homepage": "https://github.com/dhairya0907/react-native-enctyption#readme",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "author": "Dhairya Sharma <dhairya.sharma532@gmail.com>",
   "license": "MIT",
+  "repository": "https://github.com/dhairya0907/react-native-awesome-module",
+  "bugs": {
+    "url": "https://github.com/dhairya0907/react-native-awesome-module/issues"
+  },
   "files": [
     "android",
     "ios",
@@ -25,6 +29,19 @@
     "!project.xcworkspace",
     "!xcshareddata",
     "!xcuserdata"
+  ],
+  "keywords": [
+    "react-native",
+    "ios",
+    "android",
+    "encryption",
+    "decryption",
+    "encrypt",
+    "decrypt",
+    "File Encryption",
+    "File Decryption",
+    "Text Encryption",
+    "Text Decryption"
   ],
   "scripts": {
     "compile": "rm -rf lib && tsc -p .",
