@@ -78,12 +78,13 @@ const App = () => {
         setFileIv(res.iv);
         setFileSalt(res.salt);
       } else {
-        Alert.alert("Error", res);
+        Alert.alert("Error", res.error);
       }
     });
   }
 
   function decryptFile() {
+    setFileDecryptImage("https://i.ibb.co/3NGJb8z/placeholder-TEMP.gif");
     RNEncryptionModule.decryptFile(
       encryptInputFilePath,
       decryptFilePath,
@@ -95,7 +96,7 @@ const App = () => {
         setFileDecryptMessage(res.message);
         setFileDecryptImage("file:///" + decryptFilePath);
       } else {
-        console.log(res);
+        setFileDecryptMessage(res.error);
       }
     });
   }
@@ -110,7 +111,7 @@ const App = () => {
             RNFS.DocumentDirectoryPath +
             "/Decrypt_" +
             response.assets[0].uri!.split("/").pop()
-          ).substring(1)
+          )
         );
 
         setEncryptFilePath(
@@ -118,10 +119,10 @@ const App = () => {
             RNFS.DocumentDirectoryPath +
             "/Encrypted_" +
             response.assets[0].uri!.split("/").pop()
-          ).substring(1)
+          )
         );
 
-        setInputFilePath(response.assets[0].uri!.substring(8));
+        setInputFilePath(response.assets[0].uri!);
       }
     });
   }

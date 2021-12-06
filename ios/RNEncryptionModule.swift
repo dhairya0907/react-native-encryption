@@ -71,7 +71,6 @@ class RNEncryptionModule: NSObject {
             let sc = StreamCryptor(operation: .decrypt, algorithm: ENCRYPT_ALGO, mode: .CTR, padding: .NoPadding, key: [UInt8](aesKeyFromPassword!), iv: [UInt8](iv!))
             
             _ = FileEncryptionDecryption.crypt(sc: sc, inputStream: encryptedFileStream, outputStream: decryptedFilStream, bufferSize: 1024)
-            
             encryptedFileStream.close()
             decryptedFilStream.close()
         }
@@ -155,6 +154,14 @@ class RNEncryptionModule: NSObject {
         {
             resolve(["status" : "Fail", "error" : "Salt is required"])
         }
+        else if((iv?.utf8.count)! < 32)
+        {
+            resolve(["status" : "Fail", "error" : "Length of iv must be 32"])
+        }
+        else if((salt?.utf8.count)! < 32)
+        {
+            resolve(["status" : "Fail", "error" : "Length of salt must be 32"])
+        }
         else
         {
             let response = self.decryptText(cipherText: cipherText ?? "" ,password: password ?? "", iv: iv ?? "", salt: salt ?? "")
@@ -187,10 +194,31 @@ class RNEncryptionModule: NSObject {
         {
             resolve(["status" : "Fail", "error" : "Salt is required"])
         }
+        else if((iv?.utf8.count)! < 32)
+        {
+            resolve(["status" : "Fail", "error" : "Length of iv must be 32"])
+        }
+        else if((salt?.utf8.count)! < 32)
+        {
+            resolve(["status" : "Fail", "error" : "Length of salt must be 32"])
+        }
         else
         {
-            let response = self.decryptFile(encryptedFilePath: encryptedFilePath ?? "", decryptedFilePath: decryptedFilePath ?? "", password: password ?? "", iv: iv ?? "", salt: salt ?? "")
-            resolve(response)
+            var finalEncryptedFilePath = encryptedFilePath
+            var finalDecryptedFilePath = decryptedFilePath
+            if(String(finalEncryptedFilePath!.prefix(8)) == "file:///")
+            {
+                finalEncryptedFilePath = String(finalEncryptedFilePath!.dropFirst(8))
+            }
+            if(String(finalDecryptedFilePath!.prefix(8)) == "file:///")
+            {
+                finalDecryptedFilePath = String(finalDecryptedFilePath!.dropFirst(8))
+            }
+            do
+            {
+                let response = self.decryptFile(encryptedFilePath: finalEncryptedFilePath ?? "", decryptedFilePath: finalDecryptedFilePath ?? "", password: password ?? "", iv: iv ?? "", salt: salt ?? "")
+                resolve(response)
+            }
         }
     }
     
@@ -234,7 +262,17 @@ class RNEncryptionModule: NSObject {
         }
         else
         {
-            let response = self.encryptFile(inputFilePath: inputFilePath ?? "" , encryptedFilePath: encryptedFilePath ?? "" , password: password ?? "" )
+            var finalInputFilePath = inputFilePath
+            var finalEncryptedFilePath = encryptedFilePath
+            if(String(finalInputFilePath!.prefix(8)) == "file:///")
+            {
+                finalInputFilePath = String(finalInputFilePath!.dropFirst(8))
+            }
+            if(String(finalEncryptedFilePath!.prefix(8)) == "file:///")
+            {
+                finalEncryptedFilePath = String(finalEncryptedFilePath!.dropFirst(8))
+            }
+            let response = self.encryptFile(inputFilePath: finalInputFilePath ?? "" , encryptedFilePath: finalEncryptedFilePath ?? "" , password: password ?? "" )
             resolve(response)
         }
     }

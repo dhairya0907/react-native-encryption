@@ -6,7 +6,7 @@ platform :ios, '11.0'
 target 'example' do
   config = use_native_modules!
 
-  pod 'RNFS', :path => '../node_modules/react-native-fs'
+  
 
   use_react_native!(
     :path => config[:reactNativePath],
@@ -20,7 +20,6 @@ target 'example' do
   # you should disable the next line.
   use_flipper!()
 
-  pod 'RNFS', :path => '../node_modules/react-native-fs'
 
   post_install do |installer|
     react_native_post_install(installer)
