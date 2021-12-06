@@ -7,7 +7,7 @@
     "module": "CommonJS",
     "noEmit": true,
     "paths": {
-      "@dhairya0907/react-native-encryption": ["../src"]
+      "react-native-encryption": ["../src"]
     },
     "skipLibCheck": true,
     "strict": true,
