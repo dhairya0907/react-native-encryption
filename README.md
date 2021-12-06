@@ -7,6 +7,13 @@
 ### Encryption/decryption for React Native.
 
 &nbsp;
+## Features
+- Encrypt/decrypt any length of text.
+- Encrypt/decrypt any type of file.
+- Encrypt/decrypt any size of file.
+- Encrypt/decrypt at fast speed.
+
+&nbsp;
 
 # Getting started
 
