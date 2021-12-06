@@ -7,9 +7,12 @@
   "types": "lib/index.d.ts",
   "author": "Dhairya Sharma <dhairya.sharma532@gmail.com>",
   "license": "MIT",
-  "repository": "https://github.com/dhairya0907/react-native-awesome-module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/otobank/create-react-native-module.git"
+  },
   "bugs": {
-    "url": "https://github.com/dhairya0907/react-native-awesome-module/issues"
+    "url": "https://github.com/dhairya0907/react-native-encryption/issues"
   },
   "files": [
     "android",
