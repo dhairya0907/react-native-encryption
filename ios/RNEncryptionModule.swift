@@ -59,7 +59,7 @@ class RNEncryptionModule: NSObject {
             let aesKeyFromPassword = self.getAESKeyFromPassword(password: password, salt: salt!, keyByteCount: 32, rounds: 65536)
             guard let encryptedFileStream = InputStream(fileAtPath: encryptedFilePath) else
             {
-                return ["status" : "Fail", "error" : "Failed to open the encrypted file for input."]
+                return ["status" : "Fail", "error" : "File for decryption not found"]
             }
             encryptedFileStream.open()
             
@@ -107,13 +107,13 @@ class RNEncryptionModule: NSObject {
             let iv = getRandomNonce(numBytes: IV_LENGTH_BYTE)
             let aesKeyFromPassword = self.getAESKeyFromPassword(password: password, salt: salt!, keyByteCount: 32, rounds: 65536)
             guard let inputFileStream = InputStream(fileAtPath: inputFilePath) else {
-                return ["status" : "Fail", "error" : "Failed to initialize the image input stream."]
+                return ["status" : "Fail", "error" : "File for encryption not found"]
             }
             inputFileStream.open()
             
             guard let  encryptedFileStream = OutputStream(toFileAtPath: encryptedFilePath, append:false) else
             {
-                return ["status" : "Fail", "error" : "Failed to open output stream."]
+                return ["status" : "Fail", "error" : "Failed to open file output stream."]
             }
             encryptedFileStream.open()
             
@@ -154,11 +154,11 @@ class RNEncryptionModule: NSObject {
         {
             resolve(["status" : "Fail", "error" : "Salt is required"])
         }
-        else if((iv?.utf8.count)! < 32)
+        else if((iv?.utf8.count)! != 32)
         {
             resolve(["status" : "Fail", "error" : "Length of iv must be 32"])
         }
-        else if((salt?.utf8.count)! < 32)
+        else if((salt?.utf8.count)! != 32)
         {
             resolve(["status" : "Fail", "error" : "Length of salt must be 32"])
         }
@@ -194,11 +194,11 @@ class RNEncryptionModule: NSObject {
         {
             resolve(["status" : "Fail", "error" : "Salt is required"])
         }
-        else if((iv?.utf8.count)! < 32)
+        else if((iv?.utf8.count)! != 32)
         {
             resolve(["status" : "Fail", "error" : "Length of iv must be 32"])
         }
-        else if((salt?.utf8.count)! < 32)
+        else if((salt?.utf8.count)! != 32)
         {
             resolve(["status" : "Fail", "error" : "Length of salt must be 32"])
         }

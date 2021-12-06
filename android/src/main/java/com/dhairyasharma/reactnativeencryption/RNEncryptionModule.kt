@@ -183,6 +183,16 @@ class RNEncryptionModule(reactContext: ReactApplicationContext) :
                 response.putString("status", "Fail")
                 response.putString("error", "Salt is required")
                 promise.resolve(response)
+            } else if (iv.length != 32) {
+                val response = WritableNativeMap()
+                response.putString("status", "Fail")
+                response.putString("error", "Length of iv must be 32")
+                promise.resolve(response)
+            } else if (salt.length != 32) {
+                val response = WritableNativeMap()
+                response.putString("status", "Fail")
+                response.putString("error", "Length of salt must be 32")
+                promise.resolve(response)
             } else {
                 val decryptedText = textDecryption(cipherText, password, iv, salt)
                 val response = WritableNativeMap()
@@ -234,13 +244,52 @@ class RNEncryptionModule(reactContext: ReactApplicationContext) :
                 response.putString("status", "Fail")
                 response.putString("error", "Salt is required")
                 promise.resolve(response)
-            } else {
-                fileDecryption(File(encryptedFilePath), File(decryptedFilePath), password, iv, salt)
+            } else if (iv.length != 32) {
                 val response = WritableNativeMap()
-                response.putString("status", "success")
-                response.putString("message", "File Decrypted successfully.")
-
+                response.putString("status", "Fail")
+                response.putString("error", "Length of iv must be 32")
                 promise.resolve(response)
+            } else if (salt.length != 32) {
+                val response = WritableNativeMap()
+                response.putString("status", "Fail")
+                response.putString("error", "Length of salt must be 32")
+                promise.resolve(response)
+            } else {
+                var finalEncryptedFilePath = encryptedFilePath
+                var finalDecryptedFilePath = decryptedFilePath
+                if (finalEncryptedFilePath.substring(
+                        0,
+                        Math.min(finalEncryptedFilePath.length, 8)
+                    ) == "file:///"
+                ) {
+                    finalEncryptedFilePath = finalEncryptedFilePath.substring(8)
+                }
+                if (finalDecryptedFilePath.substring(
+                        0,
+                        Math.min(finalDecryptedFilePath.length, 8)
+                    ) == "file:///"
+                ) {
+                    finalDecryptedFilePath = finalDecryptedFilePath.substring(8)
+                }
+                if (!File(finalEncryptedFilePath).exists()) {
+                    val response = WritableNativeMap()
+                    response.putString("status", "Fail")
+                    response.putString("error", "File for decryption not found")
+                    promise.resolve(response)
+                } else {
+                    fileDecryption(
+                        File(finalEncryptedFilePath),
+                        File(finalDecryptedFilePath),
+                        password,
+                        iv,
+                        salt
+                    )
+                    val response = WritableNativeMap()
+                    response.putString("status", "success")
+                    response.putString("message", "File Decrypted successfully.")
+
+                    promise.resolve(response)
+                }
             }
         } catch (e: GeneralSecurityException) {
             promise.reject(e)
@@ -305,18 +354,39 @@ class RNEncryptionModule(reactContext: ReactApplicationContext) :
                 response.putString("status", "Fail")
                 response.putString("error", "Password is required")
                 promise.resolve(response)
-            } else if (!File(inputFilePath).exists()) {
-                val response = WritableNativeMap()
-                response.putString("status", "Fail")
-                response.putString("error", "File for encryption not found")
-                promise.resolve(response)
             } else {
-                val sealed = fileEncryption(File(inputFilePath), File(encryptedFilePath), password)
-                val response = WritableNativeMap()
-                response.putString("status", "success")
-                response.putString("iv", sealed.iv?.toHex())
-                response.putString("salt", sealed.salt?.toHex())
-                promise.resolve(response)
+                var finalInputFilePath = inputFilePath
+                var finalEncryptedFilePath = encryptedFilePath
+                if (finalInputFilePath.substring(0, Math.min(finalInputFilePath.length, 8)) ==
+                    "file:///"
+                ) {
+                    finalInputFilePath = finalInputFilePath.substring(8)
+                }
+                if (finalEncryptedFilePath.substring(
+                        0,
+                        Math.min(finalEncryptedFilePath.length, 8)
+                    ) == "file:///"
+                ) {
+                    finalEncryptedFilePath = finalEncryptedFilePath.substring(8)
+                }
+                if (!File(finalInputFilePath).exists()) {
+                    val response = WritableNativeMap()
+                    response.putString("status", "Fail")
+                    response.putString("error", "File for encryption not found")
+                    promise.resolve(response)
+                } else {
+                    val sealed =
+                        fileEncryption(
+                            File(finalInputFilePath),
+                            File(finalEncryptedFilePath),
+                            password
+                        )
+                    val response = WritableNativeMap()
+                    response.putString("status", "success")
+                    response.putString("iv", sealed.iv?.toHex())
+                    response.putString("salt", sealed.salt?.toHex())
+                    promise.resolve(response)
+                }
             }
         } catch (e: GeneralSecurityException) {
             promise.reject(e)
