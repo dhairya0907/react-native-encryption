@@ -9,9 +9,19 @@ git clone https://github.com/dhairya0907/react-native-encryption.git
 
 ### Setup
 ```sh
-cd react-native-encryption && yarn && cd example && yarn && cd ios && pod install && cd ..
+cd react-native-encryption && yarn && cd example && yarn
+```
 
-# Skip cd ios && pod install && cd .. if not using ios
+```sh
+# Without this execution, you will get an error for pod install because of react-native-fetch-blob
+
+grep -rl "s.dependency 'React/Core'" node_modules/ | xargs sed -i '' 's=React/Core=React-Core=g'
+```
+
+```sh
+# Skip this, if not using ios
+
+cd ios && pod install && cd ..
 ```
 ***If you make changes to the code, run setup again***
 
