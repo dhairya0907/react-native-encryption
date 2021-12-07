@@ -2,7 +2,7 @@
   "name": "@dhairya0907/react-native-encryption",
   "version": "1.0.0",
   "description": "Encryption/Decryption for React Native",
-  "homepage": "https://github.com/dhairya0907/react-native-enctyption#readme",
+  "homepage": "https://github.com/dhairya0907/react-native-encryption#readme",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "author": "Dhairya Sharma <dhairya.sharma532@gmail.com>",
