@@ -8,17 +8,18 @@
 
 &nbsp;
 
+
 # Benchmark
 
-|                                                                                                                                                                                                           |                                                  |                                                  |
-| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------: | :----------------------------------------------- |
+|                                                                                                                                                                                                           |                                                
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **File Details**                                                                                                                                                                                          |
 | **_File Link_**<br>http://bit.do/benchmarkfile<br>**_File Size_**<br>1.09 GB                                                                                                                              |
 | **IOS Benchmark**                                                                                                                                                                                         |
-| **_Average of 100 Encryption_**<br>4.859 seconds<br>**_Average of 100 Decryption_**<br>5.594 seconds<br>Check Log for all IOS encryption [here](https://github.com/dhairya0907/react-native-encryption/blob/3e267e006f1fd1ed115733da2a86c21437865878/benchmark/IOS_LOGS.txt#L2).<br>Check Log for all IOS decryption [here](https://github.com/dhairya0907/react-native-encryption/blob/3e267e006f1fd1ed115733da2a86c21437865878/benchmark/IOS_LOGS.txt#L110).          |
+| **_Average of 100 Encryption_**<br>4.859 seconds<br><br>**_Average of 100 Decryption_**<br>5.594 seconds<br><br>Check Log for all IOS encryption [here](https://github.com/dhairya0907/react-native-encryption/blob/3e267e006f1fd1ed115733da2a86c21437865878/benchmark/IOS_LOGS.txt#L2).<br>Check Log for all IOS decryption [here](https://github.com/dhairya0907/react-native-encryption/blob/3e267e006f1fd1ed115733da2a86c21437865878/benchmark/IOS_LOGS.txt#L110).          |
 | **Android Benchmark**                                                                                                                                                                                     |
-| **_Average of 100 Encryption_**<br>20.373 seconds<br>**_Average of 100 Decryption_**<br>21.908 seconds<br>Check Log for all Android encryption [here](https://github.com/dhairya0907/react-native-encryption/blob/3e267e006f1fd1ed115733da2a86c21437865878/benchmark/ANDROID_LOGS.txt#L2).<br>Check Log for all Android decryption [here](https://github.com/dhairya0907/react-native-encryption/blob/3e267e006f1fd1ed115733da2a86c21437865878/benchmark/ANDROID_LOGS.txt#L109). |
-|                                                                                                                                                                                                           | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+| **_Average of 100 Encryption_**<br>20.373 seconds<br><br>**_Average of 100 Decryption_**<br>21.908 seconds<br><br>Check Log for all Android encryption [here](https://github.com/dhairya0907/react-native-encryption/blob/3e267e006f1fd1ed115733da2a86c21437865878/benchmark/ANDROID_LOGS.txt#L2).<br>Check Log for all Android decryption [here](https://github.com/dhairya0907/react-native-encryption/blob/3e267e006f1fd1ed115733da2a86c21437865878/benchmark/ANDROID_LOGS.txt#L109). |
+|                                                                                                                                                                                                           | 
 
 &nbsp;
 
