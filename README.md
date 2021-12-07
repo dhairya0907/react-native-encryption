@@ -225,7 +225,7 @@ or
 
 ## Acknowledgements
 - Inspired by [react-native-aes-gcm-crypto](https://github.com/craftzdog/react-native-aes-gcm-crypto)
-- Module template by [Creact-native-module-template](https://github.com/demchenkoalex/react-native-module-template)
+- Module template by [react-native-module-template](https://github.com/demchenkoalex/react-native-module-template)
 - IOS library by [IDZSwiftCommonCrypto](https://github.com/iosdevzone/IDZSwiftCommonCrypto)
 - Android library by [bc-java](https://github.com/bcgit/bc-java) edited using [nodejs-mybc-util](https://github.com/jbuhacoff/nodejs-mybc-util)
 
