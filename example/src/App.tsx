@@ -8,9 +8,11 @@ import {
   Alert,
   Pressable,
   Image,
+  Platform,
 } from "react-native";
 import RNEncryptionModule from "@dhairya0907/react-native-encryption";
 import { launchImageLibrary } from "react-native-image-picker";
+import RNFetchBlob from "react-native-fetch-blob";
 var RNFS = require("react-native-fs");
 
 const App = () => {
@@ -104,25 +106,34 @@ const App = () => {
   function launchImagePicker() {
     launchImageLibrary({
       mediaType: "mixed",
-    }).then((response) => {
+    }).then(async (response) => {
       if (!response.didCancel && response.assets) {
+        if (
+          Platform.OS == "android" &&
+          response.assets[0].uri!.startsWith("content://")
+        ) {
+          RNFetchBlob.fs
+            .stat(response.assets[0].uri!)
+            .then((statResult: any) => { 
+              setInputFilePath(statResult.path);
+            })
+            .catch((err: any) => {
+              console.log("Error ==>> ",err);
+            });
+        } else {
+          setInputFilePath(response.assets[0].uri!);
+        }
         setDecryptFilePath(
-          (
-            RNFS.DocumentDirectoryPath +
+          RNFS.DocumentDirectoryPath +
             "/Decrypt_" +
             response.assets[0].uri!.split("/").pop()
-          )
         );
 
         setEncryptFilePath(
-          (
-            RNFS.DocumentDirectoryPath +
+          RNFS.DocumentDirectoryPath +
             "/Encrypted_" +
             response.assets[0].uri!.split("/").pop()
-          )
         );
-
-        setInputFilePath(response.assets[0].uri!);
       }
     });
   }

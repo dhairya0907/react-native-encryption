@@ -1,17 +1,32 @@
 # `@dhairya0907/react-native-encryption`
 
-![Supports Android, iOS](https://img.shields.io/badge/platforms-android%20|%20ios%20-lightgrey.svg) [ ![MIT License](https://img.shields.io/npm/l/@react-native-community/netinfo.svg) ](/LICENSE) ![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg) [ ![Maintainer](https://img.shields.io/badge/maintainer-dhairya0907-blue) ](https://github.com/dhairya0907) [![Generic badge](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/dhairya0907/react-native-encryption/releases) 
+![Supports Android, iOS](https://img.shields.io/badge/platforms-android%20|%20ios%20-lightgrey.svg) [ ![MIT License](https://img.shields.io/npm/l/@react-native-community/netinfo.svg) ](/LICENSE) ![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg) [ ![Maintainer](https://img.shields.io/badge/maintainer-dhairya0907-blue) ](https://github.com/dhairya0907) [![Generic badge](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/dhairya0907/react-native-encryption/releases)
 
 [![Twitter](https://img.shields.io/badge/dhairya__0907-%231DA1F2.svg?style=for-the-badge&logo=Twitter&logoColor=white) ](https://twitter.com/dhairya_0907) [ ![LinkedIn](https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white) ](https://www.linkedin.com/in/dhairyasharma0907/)
 
 ### Encryption/decryption for React Native.
 
 &nbsp;
-## Features
+
+# Benchmark
+
+|                                                                                                                                                                                                           |                                                  |                                                  |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------------------------------------: | :----------------------------------------------- |
+| **File Details**                                                                                                                                                                                          |
+| **_File Link_**<br>http://bit.do/benchmarkfile<br>**_File Size_**<br>1.09 GB                                                                                                                              |
+| **IOS Benchmark**                                                                                                                                                                                         |
+| **_Average of 100 Encryption_**<br>4.859 seconds<br>**_Average of 100 Decryption_**<br>5.594 seconds<br>Check Log for all IOS encryption [here]().<br>Check Log for all IOS decryption [here]().          |
+| **Android Benchmark**                                                                                                                                                                                     |
+| **_Average of 100 Encryption_**<br>20.373 seconds<br>**_Average of 100 Decryption_**<br>21.908 seconds<br>Check Log for all Android encryption [here]().<br>Check Log for all Android decryption [here](). |
+|                                                                                                                                                                                                           | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; |
+
+&nbsp;
+
+# Features
+
 - Encrypt/decrypt any length of text.
 - Encrypt/decrypt any type of file.
 - Encrypt/decrypt any size of file.
-- Encrypt/decrypt at fast speed.
 
 &nbsp;
 
@@ -115,6 +130,7 @@ RNEncryptionModule.decryptText(
             console.log(err);
         });
 ```
+
 - **encryptedText** : Cipher text to be decrypted.
 - **password** : Password to decrypt the cipher text.
 - **iv** : Initialization vector from encryptText.
@@ -155,6 +171,7 @@ or
             console.log(err);
         });
 ```
+
 - **inputFilePath** : Path of the file to be encrypted.
 - **outputEncryptedFilePath** : Path of the encrypted file.
 - **password** : Password to encrypt the file.
@@ -198,6 +215,7 @@ or
             console.log(err);
         });
 ```
+
 - **encryptedFilePath** : Path of the file to be decrypted.
 - **outputDecryptedFilePath** : Path of the decrypted file.
 - **password** : Password to decrypt the file.
@@ -223,17 +241,35 @@ or
 }
 ```
 
-## Acknowledgements
+---
+
+**NOTE**
+
+On android, Input or Output file path does not support **_content://_**&nbsp; type file path. Please use **_file://_**&nbsp; type file path.
+
+You can use [react-native-fetch-blob stat](https://github.com/wkh237/react-native-fetch-blob/wiki/File-System-Access-API#user-content-statpathstringpromisernfetchblobstat) to get original path. See [example]().
+
+**_You will need Files and media permission for this._**
+
+---
+
+&nbsp;
+
+# Acknowledgements
+
 - Inspired by [react-native-aes-gcm-crypto](https://github.com/craftzdog/react-native-aes-gcm-crypto)
 - Module template by [react-native-module-template](https://github.com/demchenkoalex/react-native-module-template)
 - IOS library by [IDZSwiftCommonCrypto](https://github.com/iosdevzone/IDZSwiftCommonCrypto)
 - Android library by [bc-java](https://github.com/bcgit/bc-java) edited using [nodejs-mybc-util](https://github.com/jbuhacoff/nodejs-mybc-util)
 
-## Author
+&nbsp;
+
+# Author
 
 Dhairya Sharma | [@dhairya0907](https://github.com/dhairya0907)
 
+&nbsp;
 
-## License
+# License
 
 The library is released under the MIT license. For more information see [`LICENSE`](/LICENSE).
