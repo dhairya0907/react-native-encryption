@@ -20,6 +20,7 @@
     "lib",
     "react-native-encryption.podspec",
     "!android/build",
+    "!ios/build",
     "!.DS_Store",
     "!.gradle",
     "!.idea",
@@ -31,7 +32,8 @@
     "!local.properties",
     "!project.xcworkspace",
     "!xcshareddata",
-    "!xcuserdata"
+    "!xcuserdata",
+    "!benchmark/"
   ],
   "keywords": [
     "react-native",
