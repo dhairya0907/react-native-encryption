@@ -1,4 +1,4 @@
-# `@dhairya0907/react-native-encryption`
+# `@dhairyasharma/react-native-encryption`
 
 ![Supports Android, iOS](https://img.shields.io/badge/platforms-android%20|%20ios%20-lightgrey.svg) [ ![MIT License](https://img.shields.io/npm/l/@react-native-community/netinfo.svg) ](/LICENSE) ![Maintenance](https://img.shields.io/badge/Maintained%3F-yes-green.svg) [ ![Maintainer](https://img.shields.io/badge/maintainer-dhairya0907-blue) ](https://github.com/dhairya0907) [![Generic badge](https://img.shields.io/badge/version-1.0.0-blue.svg)](https://github.com/dhairya0907/react-native-encryption/releases)
 
@@ -36,13 +36,13 @@
 Install the library using either Yarn:
 
 ```
-yarn add @dhairya0907/react-native-encryption
+yarn add @dhairyasharma/react-native-encryption
 ```
 
 or npm:
 
 ```sh
-npm install --save @dhairya0907/react-native-encryption
+npm install --save @dhairyasharma/react-native-encryption
 ```
 
 or git:
@@ -71,7 +71,7 @@ cd ios && pod install && cd ..
 ## Import the library
 
 ```javascript
-import RNEncryptionModule from "@dhairya0907/react-native-encryption";
+import RNEncryptionModule from "@dhairyasharma/react-native-encryption";
 ```
 
 ## Encrypt Text

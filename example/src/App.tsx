@@ -10,7 +10,7 @@ import {
   Image,
   Platform,
 } from "react-native";
-import RNEncryptionModule from "@dhairya0907/react-native-encryption";
+import RNEncryptionModule from "@dhairyasharma/react-native-encryption";
 import { launchImageLibrary } from "react-native-image-picker";
 import RNFetchBlob from "react-native-fetch-blob";
 var RNFS = require("react-native-fs");
